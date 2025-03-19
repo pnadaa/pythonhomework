@@ -175,3 +175,6 @@ cython_debug/
 
 # All json files
 *.json
+
+# Images
+images/

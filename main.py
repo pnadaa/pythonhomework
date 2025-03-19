@@ -1,6 +1,7 @@
 import discord
 from grades_homework import *
 from karma import *
+from emoji_image import *
 
 # create intents == these are the permissions we want from discord
 intents = discord.Intents.default()
@@ -70,17 +71,9 @@ async def on_message(message: discord.message):
             return
         karma = show_karma(existing_karma)
         await message.channel.send(content = f"Here is everyone's karma:\n{karma}", allowed_mentions = mentions)
-    
 
 
 
-    
-
-        
-
-
-
-    
 ## BELOW IS GRADES HW CODE
     if content.startswith(">start"):
         await message.reply(f"Hi {author}! Select a number below to start!\n>1: View all existing grades\n>2: Add new grades\n>3: View the average of your grades\n>4: Show your grades from best to worst\n>5: Show the mark for a particular course\n>6: Clear all my saved results")
@@ -118,6 +111,12 @@ async def on_message(message: discord.message):
     
     if content == ">delete ALL":
         await delete_all(message, user)
+
+
+
+@bot.event
+async def on_raw_reaction_add(payload: discord.RawReactionActionEvent):
+    await save_image_if_react(payload, bot)
 
 
 
