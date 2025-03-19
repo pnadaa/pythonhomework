@@ -7,7 +7,7 @@ Karma stores discord user karma and is able to increase or decrease the karma wh
 Save image if reacted saves a copy of the image if it is reacted to to /images\
 \
 :) its so work in progress that the code is wild af\
-no discord api keys to be had here\
+no discord api keys to be had here
 
 
 ```mermaid
