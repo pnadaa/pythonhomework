@@ -57,7 +57,7 @@ async def on_message(message: discord.message):
     
     #If one or more user is mentioned, and there are + or - present within the same message, calculate the total karma in the message,
     # load existing karma from the json, update with the new karma, then save and reply with the change to karma 
-    if number_of_mentions > 0 and (karma_total > 0 or karma_total <0):
+    if number_of_mentions > 0 and (karma_total > 0 or karma_total < 0):
         karma_to_print = f"Updated Karma!\n"
         karma_to_print = determine_user_karma(number_of_mentions, karmajson, target, karma_dict, karma_total, karma_to_print)
         await message.reply(content = f"{karma_to_print}", allowed_mentions = mentions)
@@ -149,5 +149,7 @@ def main():
     discord_key = initialise_and_load("discord_key.json")
     print(discord_key)
     bot.run(discord_key["discord"])
+
+    
 if __name__ == "__main__":
     main()
