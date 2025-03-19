@@ -129,25 +129,10 @@ async def on_message_delete(message: discord.message):
     sender = message.author
     await message.channel.send(f"Nice try! {sender}, the message you just deleted was:\n{content}\n<:uggh:910079696199360532>")
 
-# @bot.event
-# async def on_message_delete(message: discord.message):
-#     if message.author.bot:
-#         return
-#     content = message.content
-#     sender = message.author
-#     await message.channel.send(f"Nice try! {sender}, the message you just deleted was:\n{content}\n<:uggh:910079696199360532>")
-    
-# @bot.event
-# async def on_message_edit(before, after):
-#     if before.author.bot:
-#         return
-#     sender = before.author
-#     await after.channel.send(f"Nice try! {sender}, the message you just edited was:\n{before.content}\nand was changed to:\n{after.content}")
 
 
 def main():
     discord_key = initialise_and_load("discord_key.json")
-    print(discord_key)
     bot.run(discord_key["discord"])
 
     
