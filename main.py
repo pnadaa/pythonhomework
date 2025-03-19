@@ -39,7 +39,7 @@ async def on_message(message: discord.message):
     split_by_word = content.split(" ")
     index = 0
     karma_dict = {}
-    target = []
+    target = {}
     karma_present = False
     karma_total = 0
     
@@ -48,7 +48,7 @@ async def on_message(message: discord.message):
     for n in split_by_word:
         result = check_for_mention(split_by_word, target, index)
         if result != None:
-            target.append(result)
+            target.update({result: ""})
         number_of_mentions = len(target)
         karma_present = check_for_karma(split_by_word, index)
         if karma_present != None:
@@ -57,7 +57,7 @@ async def on_message(message: discord.message):
     
     #If one or more user is mentioned, and there are + or - present within the same message, calculate the total karma in the message,
     # load existing karma from the json, update with the new karma, then save and reply with the change to karma 
-    if number_of_mentions > 0 and karma_total > 0:
+    if number_of_mentions > 0 and (karma_total > 0 or karma_total <0):
         karma_to_print = f"Updated Karma!\n"
         karma_to_print = determine_user_karma(number_of_mentions, karmajson, target, karma_dict, karma_total, karma_to_print)
         await message.reply(content = f"{karma_to_print}", allowed_mentions = mentions)

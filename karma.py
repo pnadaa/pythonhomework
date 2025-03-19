@@ -38,16 +38,16 @@ def determine_user_karma(number_of_mentions, karmajson, target, karma_dict, karm
     """
     x = 0
     for n in range(number_of_mentions):
-        existing_karma = 0 
+        existing_karma = 0
         stored_karma = initialise_and_load(karmajson)
-        existing_karma = stored_karma.get(f"{target[x]}")
+        existing_karma = stored_karma.get(f"{list(target)[x]}")
         try:
             int(existing_karma)
         except:
             existing_karma = 0
         update_karma = karma_total + existing_karma
-        karma_dict.update({f"{target[x]}": update_karma})
-        karma_to_print += f"{target[x]}: {karma_dict[target[x]]}\n"
+        karma_dict.update({f"{list(target)[x]}": update_karma})
+        karma_to_print += f"{list(target)[x]}: {karma_dict[list(target)[x]]}\n"
         new_karma = karma_dict
         stored_karma.update(new_karma)
         sorted_karma = dict(sorted(stored_karma.items(), key = lambda item: item[1], reverse = True))
